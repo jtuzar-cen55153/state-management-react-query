@@ -1,0 +1,28 @@
+{
+  "heroes": [
+    {
+      "name": "Aslag",
+      "id": "HeroAslaug"
+    },
+    {
+      "name": "Ivar",
+      "id": "HeroIvar"
+    },
+    {
+      "id": "HeroRagnar",
+      "name": "Ragnar Lothbrok"
+    },
+    {
+      "id": "HeroRollo",
+      "name": "Rollo"
+    },
+    {
+      "id": "HeroSigurd",
+      "name": "Sigurd"
+    },
+    {
+      "id": "HeroUbba",
+      "name": "Ubba"
+    }
+  ]
+}
