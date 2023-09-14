@@ -22,7 +22,7 @@ export const DashboardPage = () => {
       <Row>
         <ListGroup horizontal>
           {data?.map(({ id, name }) => (
-            <ListGroupItem key={id} action tag={Link} to={`/${id}`}>
+            <ListGroupItem key={id} action tag={Link} to={`/heroes/${id}`}>
               {name}
             </ListGroupItem>
           ))}

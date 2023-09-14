@@ -7,6 +7,8 @@ import { DashboardPage } from './pages/DashboardPage';
 // import { HeroesPage } from './pages/HeroesPage';
 import { Suspense, lazy } from 'react';
 import { Spinner } from 'reactstrap';
+import { ErrorPage } from './pages/ErrorPage';
+import { NotFound } from './pages/NotFound';
 
 const HeroesPage = lazy(() => import('./pages/HeroesPage').then(({ HeroesPage }) => ({ default: HeroesPage })));
 
@@ -14,25 +16,32 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
         element: <DashboardPage />,
       },
       {
-        path: '/heroes',
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <HeroesPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/:id',
-        element: <EditHeroPage />,
+        path: 'heroes',
+        children: [
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<Spinner />}>
+                <HeroesPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: ':id',
+            element: <EditHeroPage />,
+          },
+        ],
       },
     ],
   },
+  { path: '*', element: <NotFound /> },
 ]);
 
 const queryClient = new QueryClient({

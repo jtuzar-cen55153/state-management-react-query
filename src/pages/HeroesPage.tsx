@@ -33,7 +33,7 @@ export const HeroesPage = () => {
       <ListGroup>
         {data?.map(({ id, name }) => (
           <ListGroupItem key={id}>
-            <Link to={`/${id}`}>{name}</Link>
+            <Link to={`/heroes/${id}`}>{name}</Link>
             <Button className="mx-3" onClick={() => onDelete(id)}>
               x
             </Button>
