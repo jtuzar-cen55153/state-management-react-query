@@ -4,7 +4,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { EditHeroPage } from './pages/EditHeroPage';
 import { DashboardPage } from './pages/DashboardPage';
-import { HeroesPage } from './pages/HeroesPage';
+// import { HeroesPage } from './pages/HeroesPage';
+import { Suspense, lazy } from 'react';
+import { Spinner } from 'reactstrap';
+
+const HeroesPage = lazy(() => import('./pages/HeroesPage').then(({ HeroesPage }) => ({ default: HeroesPage })));
 
 const router = createBrowserRouter([
   {
@@ -17,7 +21,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/heroes',
-        element: <HeroesPage />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <HeroesPage />
+          </Suspense>
+        ),
       },
       {
         path: '/:id',
@@ -33,6 +41,7 @@ const queryClient = new QueryClient({
       refetchOnMount: false,
       refetchOnWindowFocus: false,
       retry: 1,
+      suspense: true,
     },
   },
 });
