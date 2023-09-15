@@ -2,6 +2,15 @@ import { Link } from 'react-router-dom';
 import { useDeleteHero, useGetHeroes } from '../hooks/useHero';
 import { Alert, Button, ListGroup, ListGroupItem } from 'reactstrap';
 import { Create } from '../components/Heroes/Create';
+import { getHeroesQuery } from '../api/hero';
+import { QueryClient } from '@tanstack/react-query';
+import { Hero } from '../interface/hero';
+
+export const loader = (queryClient: QueryClient) => async (): Promise<Hero[]> => {
+  const query = getHeroesQuery();
+
+  return queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query));
+};
 
 export const HeroesPage = () => {
   const { data, isLoading, isError } = useGetHeroes();

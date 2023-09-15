@@ -1,6 +1,6 @@
+import { CACHE_KEY, URL_BASE } from '../constants/api';
 import { Hero } from '../interface/hero';
 
-const URL_BASE = 'http://localhost:8627/heroes';
 const headers = { 'Content-type': 'application/json' };
 
 export const getHeroes = async (): Promise<Hero[]> => {
@@ -26,3 +26,9 @@ export const deleteHero = async (id: string): Promise<string> => {
 
   return id;
 };
+
+export const getHeroesQuery = () => ({
+  queryKey: [CACHE_KEY],
+
+  queryFn: async () => getHeroes(),
+});
