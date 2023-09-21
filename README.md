@@ -11,6 +11,8 @@ Inspired by Angular example app.
 1. update hero name.
 1. delete hero by id.
 1. find hero by name.
+1. login and register via jwt token
+1. form validation and submitting
 
 &nbsp;
 
@@ -23,6 +25,8 @@ Inspired by Angular example app.
 - Vite JS **4.0.0**
 - ReactStrap **9.2.0**
 - Bootstrap **5.3.1**
+- react-hook-form **7.46.1**
+- json-server **0.17.3**
 
 &nbsp;
 
