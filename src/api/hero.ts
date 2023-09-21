@@ -1,34 +1,32 @@
+import { AxiosInstance } from 'axios';
 import { CACHE_KEY, URL_BASE } from '../constants/api';
 import { Hero } from '../interface/hero';
 
-const headers = { 'Content-type': 'application/json' };
+export const getHeroes = async (axios: AxiosInstance) => {
+  const response = await axios.get<Hero[]>(URL_BASE + 'heroes');
 
-export const getHeroes = async (): Promise<Hero[]> => {
-  return await (await fetch(URL_BASE)).json();
+  return response.data;
 };
 
-export const createHero = async (hero: Omit<Hero, 'id'>): Promise<Hero> => {
-  const body = JSON.stringify(hero);
-  const method = 'POST';
-  return await (await fetch(URL_BASE, { body, method, headers })).json();
+export const createHero = (axios: AxiosInstance) => async (hero: Omit<Hero, 'id'>) => {
+  const response = await axios.post<Hero>(URL_BASE + 'heroes', hero);
+
+  return response.data;
 };
 
-export const editHero = async (hero: Hero): Promise<Hero> => {
-  const body = JSON.stringify(hero);
-  const method = 'PUT';
+export const editHero = (axios: AxiosInstance) => async (hero: Hero) => {
+  const response = await axios.put<Hero>(`${URL_BASE}heroes/${hero.id}`, hero);
 
-  return await (await fetch(`${URL_BASE}/${hero.id}`, { body, method, headers })).json();
+  return response.data;
 };
 
-export const deleteHero = async (id: string): Promise<string> => {
-  const method = 'DELETE';
-  await fetch(`${URL_BASE}/${id}`, { method });
+export const deleteHero = (axios: AxiosInstance) => async (id: string) => {
+  const response = await axios.delete<string>(`${URL_BASE}heroes/${id}`);
 
-  return id;
+  return response.data;
 };
 
-export const getHeroesQuery = () => ({
+export const getHeroesQuery = (axios: AxiosInstance) => ({
   queryKey: [CACHE_KEY],
-
-  queryFn: async () => getHeroes(),
+  queryFn: async () => getHeroes(axios),
 });

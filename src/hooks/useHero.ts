@@ -3,11 +3,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { createHero, deleteHero, editHero, getHeroes } from '../api/hero';
 import { Hero } from '../interface/hero';
 import { CACHE_KEY } from '../constants/api';
+import { useAxios } from './useAxios';
 
-export const useEditHero = () => {
+export const useEditHeroMutation = () => {
   const queryClient = useQueryClient();
+  const axios = useAxios();
 
-  return useMutation(editHero, {
+  return useMutation(editHero(axios), {
     onSuccess: (updatedHero: Hero) => {
       // Optimistic update
       // queryClient.setQueryData([CACHE_KEY], (prevHeroes: Hero[] | undefined) => {
@@ -26,10 +28,11 @@ export const useEditHero = () => {
   });
 };
 
-export const useCreateHero = () => {
+export const useCreateHeroMutation = () => {
   const queryClient = useQueryClient();
+  const axios = useAxios();
 
-  return useMutation(createHero, {
+  return useMutation(createHero(axios), {
     onSuccess: (hero: Hero) => {
       // Optimistic update
       // queryClient.setQueryData([CACHE_KEY], (prevHeroes: Hero[] | undefined) =>
@@ -40,10 +43,11 @@ export const useCreateHero = () => {
   });
 };
 
-export const useDeleteHero = () => {
+export const useDeleteHeroMutation = () => {
   const queryClient = useQueryClient();
+  const axios = useAxios();
 
-  return useMutation(deleteHero, {
+  return useMutation(deleteHero(axios), {
     onSuccess: deletedHeroId => {
       // Optimistic update
       // queryClient.setQueryData([CACHE_KEY], (prevHeroes: Hero[] | undefined) =>
@@ -54,16 +58,23 @@ export const useDeleteHero = () => {
   });
 };
 
-export const useGetHeroes = () => useQuery([CACHE_KEY], getHeroes);
-export const useGetTopHeroes = () =>
-  useQuery({
+export const useGetHeroesQuery = () => {
+  const axios = useAxios();
+
+  return useQuery([CACHE_KEY], () => getHeroes(axios));
+};
+export const useGetTopHeroesQuery = () => {
+  const axios = useAxios();
+
+  return useQuery({
     queryKey: [CACHE_KEY],
-    queryFn: getHeroes,
+    queryFn: () => getHeroes(axios),
     select: useCallback((data: Hero[]) => data?.slice(0, 4) ?? [], []),
   });
+};
 
 export const useGetHeroesObserver = () => {
-  const getHeroes = useGetHeroes();
+  const getHeroes = useGetHeroesQuery();
   const queryClient = useQueryClient();
 
   const [heroes, setHeroes] = useState<Hero[]>(() => {
