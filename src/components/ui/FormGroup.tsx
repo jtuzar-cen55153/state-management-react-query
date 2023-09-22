@@ -8,6 +8,7 @@ interface FormGroupProps {
   inputType?: 'text' | 'password' | 'email' | 'textarea';
   errorMessage?: string;
   isInvalid?: boolean;
+  required?: boolean;
 }
 
 export const FormGroup: FC<FormGroupProps> = forwardRef(
@@ -26,7 +27,7 @@ export const FormGroup: FC<FormGroupProps> = forwardRef(
         valid={!isInvalid}
         {...rest}
       />
-      {isInvalid && errorMessage && <FormFeedback>{errorMessage}</FormFeedback>}
+      {isInvalid && errorMessage && <FormFeedback data-testid="form-group-feedback">{errorMessage}</FormFeedback>}
     </FormGroupReactstrap>
   ),
 );

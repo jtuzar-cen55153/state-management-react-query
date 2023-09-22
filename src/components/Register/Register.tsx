@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { Form, useActionData } from 'react-router-dom';
 import { IUserFormInputs } from '../../interface/user';
-import { Button, FormGroup, Form as FormReactstrap } from 'reactstrap';
+import { Button, Form as FormReactstrap } from 'reactstrap';
+import { FormGroup } from '../ui/FormGroup';
 
 export const Register: FC = () => {
   const errors = useActionData() as IUserFormInputs;

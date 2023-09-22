@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { ListGroup } from 'reactstrap';
 import { Hero } from '../interface/hero';
 
@@ -6,4 +6,9 @@ export const HeroesList: FC<{ horizontal?: boolean; items?: Hero[]; render: (ite
   horizontal = false,
   items,
   render,
-}) => <ListGroup horizontal={horizontal}>{items?.map(item => render(item))}</ListGroup>;
+}) =>
+  items && items.length > 0 ? (
+    <ListGroup horizontal={horizontal} data-testid="heroes-list">
+      {items?.map(item => render(item))}
+    </ListGroup>
+  ) : null;

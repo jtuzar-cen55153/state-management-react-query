@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeroesList /> should render for horizontal layout 1`] = `
+<div>
+  <ul
+    class="list-group list-group-horizontal"
+    data-testid="heroes-list"
+  >
+    <div>
+      Hero 1
+    </div>
+    <div>
+      Hero 2
+    </div>
+    <div>
+      Hero 3
+    </div>
+  </ul>
+</div>
+`;
+
+exports[`<HeroesList /> should render for vertical layout 1`] = `
+<div>
+  <ul
+    class="list-group"
+    data-testid="heroes-list"
+  >
+    <div>
+      Hero 1
+    </div>
+    <div>
+      Hero 2
+    </div>
+    <div>
+      Hero 3
+    </div>
+  </ul>
+</div>
+`;
+
+exports[`<HeroesList /> should render null 1`] = `<div />`;

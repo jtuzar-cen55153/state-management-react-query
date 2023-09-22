@@ -1,7 +1,8 @@
 import { FC } from 'react';
-import { Alert, Button, Col, Form, Input, Row, UncontrolledAlert } from 'reactstrap';
+import { Alert, Button, Col, Form, Row, UncontrolledAlert } from 'reactstrap';
 import { useEditHero } from './hooks/useEditHero';
 import { useNavigate } from 'react-router-dom';
+import { FormGroup } from '../ui/FormGroup';
 
 export const EditHero: FC = () => {
   const { selectedHero, handleSubmit, isLoading, isSuccess, isError } = useEditHero();
@@ -16,21 +17,24 @@ export const EditHero: FC = () => {
       <Row className="my-3">
         <Col>
           <h1>Edit hero: {selectedHero.name}</h1>
-          <span>
-            Hero name: <b>{selectedHero.name}</b>
-          </span>
         </Col>
       </Row>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col>
-            <Input name="hero" type="text" placeholder="Update this Hero" required />
+            <FormGroup
+              name="hero"
+              label="Update name:"
+              placeholder="Update this Hero"
+              required
+              isInvalid={isError}
+              errorMessage="Ups! it was an error 🚨"
+            />
             {isLoading && <Alert color="info">Updating hero...</Alert>}
           </Col>
         </Row>
         <Row className="my-3">
           {isSuccess && <UncontrolledAlert color="success">Hero Hero successfully ✅</UncontrolledAlert>}
-          {isError && <UncontrolledAlert color="danger">Ups! it was an error 🚨</UncontrolledAlert>}
           <Col sm={2}>
             <Button color="secondary" outline onClick={() => navigate(-1)}>
               Go Back
