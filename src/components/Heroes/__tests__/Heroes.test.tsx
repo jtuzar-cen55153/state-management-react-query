@@ -1,4 +1,4 @@
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom'; // Use MemoryRouter for routing testing
 import { useHeroes } from '../hooks/useHeroes';
 import { Heroes } from '../Heroes';
