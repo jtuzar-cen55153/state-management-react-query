@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Alert, Button, Col, Form, Input, Label, ListGroupItem, Row, UncontrolledAlert } from 'reactstrap';
+import { Alert, Button, Col, Form, ListGroupItem, Row, UncontrolledAlert } from 'reactstrap';
 import { FC } from 'react';
 import { useHeroes } from './hooks/useHeroes';
 import { HeroesList } from '../HeroesList';
@@ -60,6 +60,7 @@ export const Heroes: FC = () => {
             placeholder="Add new hero"
             required
             isInvalid={!isCreateHeroLoading && !isCreateHeroSuccess && isCreateHeroError}
+            isValid={!isCreateHeroLoading && isCreateHeroSuccess && !isCreateHeroError}
             errorMessage="Ups! it was an error 🚨"
           />
           <Button>Add Hero</Button>

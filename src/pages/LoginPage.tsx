@@ -1,9 +1,11 @@
 import { FC } from 'react';
-import { useLoginPage } from '../components/Login/hooks/useLoginPage';
 import { UserForm } from '../components/UserForm';
+import { useUserFormSubmit } from '../hooks/useUserFormSubmit';
+import { useLoginUserMutation } from '../hooks/useUser';
 
 export const LoginPage: FC = () => {
-  const { register, errors, handleSubmit, onSubmit } = useLoginPage();
+  const { mutateAsync } = useLoginUserMutation();
+  const { register, errors, handleSubmit, onSubmit } = useUserFormSubmit(mutateAsync);
 
   return (
     <UserForm

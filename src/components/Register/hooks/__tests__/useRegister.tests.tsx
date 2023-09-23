@@ -1,16 +1,16 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useRegister } from '../useRegister'; // Import your custom hook
-import { useCreateUser } from '../../hooks/useUser';
-import { useAuth } from '../../hooks/useAuth';
+import { useCreateUserMutation } from '../../../../hooks/useUser';
+import { useAuth } from '../../../../hooks/useAuth';
 import { AxiosError } from 'axios';
 
-jest.mock('../../hooks/useUser');
-jest.mock('../../hooks/useAuth');
+jest.mock('../../../../hooks/useUser');
+jest.mock('../../../../hooks/useAuth');
 
 describe('useRegister', () => {
   it('should set token if successful', async () => {
     const setToken = jest.fn();
-    (useCreateUser as jest.Mock).mockImplementation(() => ({
+    (useCreateUserMutation as jest.Mock).mockImplementation(() => ({
       mutateAsync: async () => 'token',
     }));
     (useAuth as jest.Mock).mockImplementation(() => ({ setToken }));
@@ -26,7 +26,7 @@ describe('useRegister', () => {
 
   it('should not set token if failure', async () => {
     const setToken = jest.fn();
-    (useCreateUser as jest.Mock).mockImplementation(() => ({
+    (useCreateUserMutation as jest.Mock).mockImplementation(() => ({
       mutateAsync: async () => new AxiosError('error'),
     }));
     (useAuth as jest.Mock).mockImplementation(() => ({ setToken }));

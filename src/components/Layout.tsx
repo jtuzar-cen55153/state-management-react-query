@@ -1,16 +1,12 @@
 import { FC, ReactElement } from 'react';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { Button, Container, Nav, NavItem, NavLink as NavLinkReactstrap, Navbar, NavbarText } from 'reactstrap';
 import { useAuth } from '../hooks/useAuth';
+import { useLogoutUser } from '../hooks/useUser';
 
 export const Layout: FC<{ children?: ReactElement }> = ({ children = null }) => {
-  const { token, setToken } = useAuth();
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    setToken(null);
-    navigate('/login');
-  };
+  const { token } = useAuth();
+  const logout = useLogoutUser();
 
   return (
     <>
@@ -47,7 +43,7 @@ export const Layout: FC<{ children?: ReactElement }> = ({ children = null }) => 
         </Nav>
         {token && (
           <NavbarText>
-            <Button onClick={handleClick}>Logout</Button>
+            <Button onClick={logout}>Logout</Button>
           </NavbarText>
         )}
       </Navbar>

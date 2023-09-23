@@ -1,12 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useLoginUser } from '../../../hooks/useUser';
-import { useAuth } from '../../../hooks/useAuth';
-import { IUserFormInputs } from '../../../interface/user';
+import { useAuth } from './useAuth';
+import { IUserFormInputs } from '../interface/user';
+import { UseMutateAsyncFunction } from '@tanstack/react-query';
 
-export const useLoginPage = () => {
-  const { mutateAsync } = useLoginUser();
+export const useUserFormSubmit = (mutateAsync: UseMutateAsyncFunction<string, unknown, IUserFormInputs>) => {
   const navigate = useNavigate();
   const { setToken } = useAuth();
 

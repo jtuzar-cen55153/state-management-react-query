@@ -11,9 +11,7 @@ import { ErrorPage } from '../pages/ErrorPage';
 import { NotFound } from '../pages/NotFound';
 import { useAuth } from '../hooks/useAuth';
 import { Layout } from './Layout';
-import { useRegister } from '../hooks/useRegister';
 import { useAxios } from '../hooks/useAxios';
-import { action } from './Register/action';
 
 const EditHeroPage = lazy(() =>
   import('../pages/EditHeroPage').then(({ EditHeroPage }) => ({ default: EditHeroPage })),
@@ -56,8 +54,6 @@ export const Routes: FC = () => {
     },
   ];
 
-  const { register } = useRegister();
-
   const routesForNotAuthenticatedOnly = [
     {
       element: <Layout />,
@@ -65,7 +61,6 @@ export const Routes: FC = () => {
         {
           path: 'register',
           element: <RegisterPage />,
-          action: action(register),
           errorElement: <ErrorPage />,
         },
         {

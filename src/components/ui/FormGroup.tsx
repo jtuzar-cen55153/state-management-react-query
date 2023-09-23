@@ -1,4 +1,4 @@
-import React, { FC, Ref, forwardRef } from 'react';
+import { FC, Ref, forwardRef } from 'react';
 import { Input, Label, FormGroup as FormGroupReactstrap, FormFeedback } from 'reactstrap';
 
 interface FormGroupProps {
@@ -8,12 +8,13 @@ interface FormGroupProps {
   inputType?: 'text' | 'password' | 'email' | 'textarea';
   errorMessage?: string;
   isInvalid?: boolean;
+  isValid?: boolean;
   required?: boolean;
 }
 
 export const FormGroup: FC<FormGroupProps> = forwardRef(
   (
-    { label, name, placeholder = '', inputType = 'text', errorMessage, isInvalid = false, ...rest },
+    { label, name, placeholder = '', inputType = 'text', errorMessage, isInvalid = false, isValid = false, ...rest },
     ref: Ref<HTMLInputElement>,
   ) => (
     <FormGroupReactstrap>
@@ -24,7 +25,7 @@ export const FormGroup: FC<FormGroupProps> = forwardRef(
         placeholder={placeholder}
         type={inputType}
         invalid={isInvalid}
-        valid={!isInvalid}
+        valid={isValid}
         {...rest}
       />
       {isInvalid && errorMessage && <FormFeedback data-testid="form-group-feedback">{errorMessage}</FormFeedback>}
