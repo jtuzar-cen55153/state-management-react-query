@@ -48,7 +48,7 @@ export const Layout: FC<{ children?: ReactElement }> = ({ children = null }) => 
         )}
       </Navbar>
       <hr />
-      <Container>{children ? children : <Outlet />}</Container>
+      <Container>{children || <Outlet />}</Container>
     </>
   );
 };

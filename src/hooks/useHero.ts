@@ -74,7 +74,7 @@ export const useGetTopHeroesQuery = () => {
 };
 
 export const useGetHeroesObserver = () => {
-  const getHeroes = useGetHeroesQuery();
+  const getHeroesQuery = useGetHeroesQuery();
   const queryClient = useQueryClient();
 
   const [heroes, setHeroes] = useState<Hero[]>(() => {
@@ -99,7 +99,7 @@ export const useGetHeroesObserver = () => {
   }, [queryClient]);
 
   return {
-    ...getHeroes,
+    ...getHeroesQuery,
     data: heroes,
   };
 };

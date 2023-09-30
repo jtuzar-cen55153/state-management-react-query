@@ -3,13 +3,13 @@ import { CACHE_KEY, URL_BASE } from '../constants/api';
 import { Hero } from '../interface/hero';
 
 export const getHeroes = async (axios: AxiosInstance) => {
-  const response = await axios.get<Hero[]>(URL_BASE + 'heroes');
+  const response = await axios.get<Hero[]>(`${URL_BASE}heroes`);
 
   return response.data;
 };
 
 export const createHero = (axios: AxiosInstance) => async (hero: Omit<Hero, 'id'>) => {
-  const response = await axios.post<Hero>(URL_BASE + 'heroes', hero);
+  const response = await axios.post<Hero>(`${URL_BASE}heroes`, hero);
 
   return response.data;
 };

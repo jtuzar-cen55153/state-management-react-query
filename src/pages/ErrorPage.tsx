@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 import { FC } from 'react';
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
@@ -17,7 +17,7 @@ export const ErrorPage: FC = () => {
           <h3>{error.data.sorry}</h3>
         </>
       )}
-      {axios.isAxiosError(error) && (
+      {isAxiosError(error) && (
         <>
           <h1>Something went wrong</h1>
           <h2>{error.response?.statusText}</h2>
@@ -26,7 +26,7 @@ export const ErrorPage: FC = () => {
           {error.response?.status === 401 && <Button onClick={logout}>Revoke token</Button>}
         </>
       )}
-      {!isRouteErrorResponse(error) && !axios.isAxiosError(error) && <h1>Something went wrong</h1>}
+      {!isRouteErrorResponse(error) && !isAxiosError(error) && <h1>Something went wrong</h1>}
     </Container>
   );
 };

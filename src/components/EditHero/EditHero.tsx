@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Alert, Button, Col, Form, Row, UncontrolledAlert } from 'reactstrap';
-import { useEditHero } from './hooks/useEditHero';
 import { useNavigate } from 'react-router-dom';
+import { useEditHero } from './hooks/useEditHero';
 import { FormGroup } from '../ui/FormGroup';
 
 export const EditHero: FC = () => {

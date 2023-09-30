@@ -9,6 +9,7 @@ type TOption = {
   label: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CustomOption = ({ innerProps, data: { value, label } }: { innerProps: any; data: TOption }) => (
   <div {...innerProps}>
     <Link to={`/heroes/${value}`}>{label}</Link>

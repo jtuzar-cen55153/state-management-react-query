@@ -1,8 +1,8 @@
 import { renderHook, act } from '@testing-library/react-hooks';
+import { AxiosError } from 'axios';
 import { useRegister } from '../useRegister'; // Import your custom hook
 import { useCreateUserMutation } from '../../../../hooks/useUser';
 import { useAuth } from '../../../../hooks/useAuth';
-import { AxiosError } from 'axios';
 
 jest.mock('../../../../hooks/useUser');
 jest.mock('../../../../hooks/useAuth');

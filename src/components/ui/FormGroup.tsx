@@ -1,4 +1,5 @@
-import { FC, Ref, forwardRef } from 'react';
+/* eslint-disable react/require-default-props */
+import { forwardRef } from 'react';
 import { Input, Label, FormGroup as FormGroupReactstrap, FormFeedback } from 'reactstrap';
 
 interface FormGroupProps {
@@ -12,10 +13,10 @@ interface FormGroupProps {
   required?: boolean;
 }
 
-export const FormGroup: FC<FormGroupProps> = forwardRef(
+export const FormGroup = forwardRef<HTMLInputElement, FormGroupProps>(
   (
     { label, name, placeholder = '', inputType = 'text', errorMessage, isInvalid = false, isValid = false, ...rest },
-    ref: Ref<HTMLInputElement>,
+    ref,
   ) => (
     <FormGroupReactstrap>
       <Label for={name}>{label}</Label>
@@ -32,3 +33,5 @@ export const FormGroup: FC<FormGroupProps> = forwardRef(
     </FormGroupReactstrap>
   ),
 );
+
+FormGroup.displayName = 'FormGroup';

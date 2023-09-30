@@ -1,11 +1,10 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { AxiosError } from 'axios';
-import { useAuth } from '../././../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { useUserFormSubmit } from '../useUserFormSubmit';
+import { useAuth } from '../useAuth';
 
-// jest.mock('../../hooks/useUser');
-jest.mock('../././../hooks/useAuth');
+jest.mock('../useAuth');
 jest.mock('react-router-dom');
 
 describe('useUserFormSubmit', () => {

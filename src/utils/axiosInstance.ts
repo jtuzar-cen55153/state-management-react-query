@@ -9,6 +9,7 @@ export const getAxiosInstance = (token: string | null) => {
 
   instance.interceptors.request.use(config => {
     if (token) {
+      // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = `Bearer ${token}`;
     }
 

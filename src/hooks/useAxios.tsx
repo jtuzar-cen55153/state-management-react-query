@@ -8,5 +8,5 @@ export const useAxios = () => {
     return context;
   }
 
-  throw new Error(`useAxios must be used within a AxiosProvider`);
+  throw new Error('useAxios must be used within a AxiosProvider');
 };

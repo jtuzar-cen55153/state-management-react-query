@@ -1,10 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { ProtectedRoute } from './ProtectedRoute';
-import { DashboardPage } from '../pages/DashboardPage';
-import { HeroesPage, loader } from '../pages/HeroesPage';
 import { FC, Suspense, lazy } from 'react';
 import { Spinner } from 'reactstrap';
 import { useQueryClient } from '@tanstack/react-query';
+import { ProtectedRoute } from './ProtectedRoute';
+import { DashboardPage } from '../pages/DashboardPage';
+import { HeroesPage, loader } from '../pages/HeroesPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { LoginPage } from '../pages/LoginPage';
 import { ErrorPage } from '../pages/ErrorPage';
@@ -14,7 +14,7 @@ import { Layout } from './Layout';
 import { useAxios } from '../hooks/useAxios';
 
 const EditHeroPage = lazy(() =>
-  import('../pages/EditHeroPage').then(({ EditHeroPage }) => ({ default: EditHeroPage })),
+  import('../pages/EditHeroPage').then(({ EditHeroPage: EditHeroPageImport }) => ({ default: EditHeroPageImport })),
 );
 
 export const Routes: FC = () => {

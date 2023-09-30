@@ -25,14 +25,14 @@ export const UserForm: FC<UserFormProps> = ({ handleSubmit, onSubmit, errors, re
           inputType="email"
           placeholder="test@test.com"
           isInvalid={Boolean(errors.root?.serverError) || Boolean(errors?.email)}
-          errorMessage={Boolean(errors?.email) ? 'Email is required!' : ''}
+          errorMessage={errors?.email ? 'Email is required!' : ''}
           {...register('email', { required: true })}
         />
         <FormGroup
           label="Password"
           inputType="password"
           isInvalid={Boolean(errors.root?.serverError) || Boolean(errors?.password)}
-          errorMessage={Boolean(errors?.password) ? 'Password is required!' : ''}
+          errorMessage={errors?.password ? 'Password is required!' : ''}
           {...register('password', { required: true })}
         />
         <Button>{buttonText}</Button>

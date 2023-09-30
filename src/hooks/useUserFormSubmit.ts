@@ -1,9 +1,9 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UseMutateAsyncFunction } from '@tanstack/react-query';
 import { useAuth } from './useAuth';
 import { IUserFormInputs } from '../interface/user';
-import { UseMutateAsyncFunction } from '@tanstack/react-query';
 
 export const useUserFormSubmit = (mutateAsync: UseMutateAsyncFunction<string, unknown, IUserFormInputs>) => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const useUserFormSubmit = (mutateAsync: UseMutateAsyncFunction<string, un
       setToken(token);
       navigate('/', { replace: true });
     } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
+      if (isAxiosError(error)) {
         setError('root.serverError', {
           type: error.code,
           message: error.response?.data || error.message,

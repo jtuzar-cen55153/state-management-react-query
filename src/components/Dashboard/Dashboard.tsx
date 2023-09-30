@@ -1,10 +1,10 @@
 import { FC, Suspense, lazy } from 'react';
 import { Alert, Col, ListGroupItem, Row, Spinner } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { useGetTopHeroesQuery } from '../../hooks/useHero';
 import { HeroesList } from '../HeroesList';
-import { Link } from 'react-router-dom';
 
-const Search = lazy(() => import('./Search').then(({ Search }) => ({ default: Search })));
+const Search = lazy(() => import('./Search').then(({ Search: SearchImport }) => ({ default: SearchImport })));
 
 export const Dashboard: FC = () => {
   const { data, isLoading, isError } = useGetTopHeroesQuery();

@@ -1,8 +1,8 @@
-import { getHeroesQuery } from '../api/hero';
 import { QueryClient } from '@tanstack/react-query';
-import { Hero } from '../interface/hero';
 import { FC } from 'react';
 import { AxiosInstance } from 'axios';
+import { getHeroesQuery } from '../api/hero';
+import { Hero } from '../interface/hero';
 import { Heroes } from '../components/Heroes/Heroes';
 
 export const loader = (queryClient: QueryClient, axios: AxiosInstance) => async (): Promise<Hero[]> => {

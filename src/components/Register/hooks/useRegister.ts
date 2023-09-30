@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 import { useAuth } from '../../../hooks/useAuth';
 import { useCreateUserMutation } from '../../../hooks/useUser';
 import { IRegisterFormInputs } from '../../../interface/user';
@@ -12,9 +12,11 @@ export const useRegister = () => {
       const token = await mutateAsync({ email, password });
       setToken(token);
     } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
+      if (isAxiosError(error)) {
+        // eslint-disable-next-line no-console
         console.error(error);
       }
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   };
