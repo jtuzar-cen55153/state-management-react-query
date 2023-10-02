@@ -4,6 +4,6 @@ export interface IUserFormInputs {
 }
 
 export interface IRegisterFormInputs {
-  email: FormDataEntryValue | null;
-  password: FormDataEntryValue | null;
+  email: string;
+  password: string;
 }

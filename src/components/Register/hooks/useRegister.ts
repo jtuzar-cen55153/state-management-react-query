@@ -9,7 +9,7 @@ export const useRegister = () => {
 
   const register = async ({ email, password }: IRegisterFormInputs) => {
     try {
-      const token = await mutateAsync({ email, password });
+      const token = await mutateAsync({ email: email || '', password: password || '' });
       setToken(token);
     } catch (error: unknown) {
       if (isAxiosError(error)) {
